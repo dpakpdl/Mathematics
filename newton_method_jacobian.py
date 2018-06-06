@@ -55,8 +55,9 @@ def netwon_formula(functions, guess_x, guess_y):
 def main():
     """main function to calulate the solutions within a given error range"""
     #Enter functions here
-    functions = [X+Y-X*Y+2, X*(math.e)**(-Y)-1]
-    first_guess, second_guess = 2, 0
+    functions = [X+Y-X*Y+2, X*math.e**(-Y)-1]
+    raw_guess = raw_input('Enter initial guesses for solving %s and %s: ' % (functions[0], functions[1]))
+    first_guess, second_guess = tuple(map(int, raw_guess.split(',')))
     iteration_counter = 0
     f_value = valued_functions(functions, first_guess, second_guess)
     while abs(f_value[0]) > ERROR and abs(f_value[1]) > ERROR and iteration_counter < 100:
@@ -68,6 +69,7 @@ def main():
         print "A solution is: %f %f" % (first_guess, second_guess)
     else:
         print "Solution not found!"
+
 
 if __name__ == '__main__':
     main()
